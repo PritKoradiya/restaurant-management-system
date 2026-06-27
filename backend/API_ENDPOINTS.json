@@ -1,0 +1,312 @@
+{
+  "info": {
+    "name": "Restaurant Management System API",
+    "description": "Complete API for Restaurant Management System",
+    "version": "1.0.0"
+  },
+  "endpoints": [
+    {
+      "name": "Health Check",
+      "method": "GET",
+      "url": "http://localhost:5000/api/health"
+    },
+    {
+      "name": "Auth - Register",
+      "method": "POST",
+      "url": "http://localhost:5000/api/auth/register",
+      "body": {
+        "username": "testuser",
+        "email": "test@example.com",
+        "password": "password123",
+        "role": "customer",
+        "firstName": "Test",
+        "lastName": "User"
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "method": "POST",
+      "url": "http://localhost:5000/api/auth/login",
+      "body": {
+        "username": "admin",
+        "password": "admin123",
+        "role": "admin"
+      }
+    },
+    {
+      "name": "Auth - Get Current User",
+      "method": "GET",
+      "url": "http://localhost:5000/api/auth/me",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Menu - Get All Items",
+      "method": "GET",
+      "url": "http://localhost:5000/api/menu",
+      "query": {
+        "category": "Main Course",
+        "available": "true"
+      }
+    },
+    {
+      "name": "Menu - Get Single Item",
+      "method": "GET",
+      "url": "http://localhost:5000/api/menu/:id"
+    },
+    {
+      "name": "Menu - Create Item (Admin)",
+      "method": "POST",
+      "url": "http://localhost:5000/api/menu",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "name": "Special Biryani",
+        "description": "Special rice dish",
+        "price": 350,
+        "category": "Main Course",
+        "emoji": "🍛",
+        "preparationTime": 25,
+        "isVegetarian": false,
+        "spicyLevel": 3
+      }
+    },
+    {
+      "name": "Menu - Update Item (Admin)",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/menu/:id",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "price": 380,
+        "isAvailable": true
+      }
+    },
+    {
+      "name": "Menu - Delete Item (Admin)",
+      "method": "DELETE",
+      "url": "http://localhost:5000/api/menu/:id",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Menu - Get Categories",
+      "method": "GET",
+      "url": "http://localhost:5000/api/menu/categories/all"
+    },
+    {
+      "name": "Orders - Create Order",
+      "method": "POST",
+      "url": "http://localhost:5000/api/orders",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "items": [
+          {
+            "menuItemId": "ITEM_ID",
+            "name": "Paneer Butter Masala",
+            "price": 250,
+            "quantity": 2
+          }
+        ],
+        "orderType": "Dine-In",
+        "tableNumber": "5",
+        "paymentMethod": "Cash",
+        "discount": 0
+      }
+    },
+    {
+      "name": "Orders - Get My Orders",
+      "method": "GET",
+      "url": "http://localhost:5000/api/orders/my-orders",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Orders - Get All Orders (Staff/Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/orders",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "query": {
+        "status": "Pending",
+        "orderType": "Dine-In"
+      }
+    },
+    {
+      "name": "Orders - Get Single Order",
+      "method": "GET",
+      "url": "http://localhost:5000/api/orders/:id",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Orders - Update Status (Staff/Admin)",
+      "method": "PATCH",
+      "url": "http://localhost:5000/api/orders/:id/status",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "status": "Ready"
+      }
+    },
+    {
+      "name": "Orders - Update Payment Status (Admin)",
+      "method": "PATCH",
+      "url": "http://localhost:5000/api/orders/:id/payment-status",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "paymentStatus": "Paid"
+      }
+    },
+    {
+      "name": "Orders - Assign Staff (Admin)",
+      "method": "PATCH",
+      "url": "http://localhost:5000/api/orders/:id/assign-staff",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "staffId": "STAFF_USER_ID"
+      }
+    },
+    {
+      "name": "Orders - Cancel Order",
+      "method": "PATCH",
+      "url": "http://localhost:5000/api/orders/:id/cancel",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Orders - Get Daily Stats (Staff/Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/orders/stats/daily",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Users - Get All Users (Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/users",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "query": {
+        "role": "customer",
+        "isActive": "true"
+      }
+    },
+    {
+      "name": "Users - Get User Profile",
+      "method": "GET",
+      "url": "http://localhost:5000/api/users/:id",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Users - Update Profile",
+      "method": "PUT",
+      "url": "http://localhost:5000/api/users/:id",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "+91 1234567890",
+        "address": "123 Street, City"
+      }
+    },
+    {
+      "name": "Users - Change Password",
+      "method": "POST",
+      "url": "http://localhost:5000/api/users/:id/change-password",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "currentPassword": "oldpassword",
+        "newPassword": "newpassword123"
+      }
+    },
+    {
+      "name": "Users - Get Staff List (Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/users/role/staff",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Billing - Create Billing",
+      "method": "POST",
+      "url": "http://localhost:5000/api/billing",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "orderId": "ORDER_ID",
+        "paymentMethod": "Card",
+        "discount": 0,
+        "deliveryCharges": 50
+      }
+    },
+    {
+      "name": "Billing - Get Billing for Order",
+      "method": "GET",
+      "url": "http://localhost:5000/api/billing/order/:orderId",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      }
+    },
+    {
+      "name": "Billing - Get All Billings (Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/billing",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "query": {
+        "paymentStatus": "Paid"
+      }
+    },
+    {
+      "name": "Billing - Update Payment Status (Admin)",
+      "method": "PATCH",
+      "url": "http://localhost:5000/api/billing/:id/payment-status",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "body": {
+        "paymentStatus": "Paid",
+        "transactionId": "TXN123456"
+      }
+    },
+    {
+      "name": "Billing - Get Revenue Stats (Admin)",
+      "method": "GET",
+      "url": "http://localhost:5000/api/billing/stats/revenue",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN"
+      },
+      "query": {
+        "dateFrom": "2024-01-01",
+        "dateTo": "2024-12-31"
+      }
+    }
+  ]
+}
